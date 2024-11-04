@@ -55,8 +55,6 @@ github.com/containerd/ttrpc v1.1.0/go.mod h1:XX4ZTnoOId4HklF4edwc4DcqskFZuvXB1Ev
 github.com/containerd/typeurl v1.0.2/go.mod h1:9trJWW2sRlGub4wZJRTW83VtbOLS6hwcDZXTn6oPz9s=
 github.com/containernetworking/cni v0.6.0-rc1 h1:BQ2TcgoQbdbk5SLaUTY+N282hMhoI89QZd+9CIhvA84=
 github.com/containernetworking/cni v0.6.0-rc1/go.mod h1:LGwApLUm2FpoOfxTDEeq8T9ipbpZ61X79hmU3w8FmsY=
-github.com/containernetworking/plugins v0.6.0 h1:bqPT7yYisnWs+FrtgY5/qLEB9QZ/6z11wMNCwSdzZm0=
-github.com/containernetworking/plugins v0.6.0/go.mod h1:dagHaAhNjXjT9QYOklkKJDGaQPTg4pf//FrUcJeb7FU=
 github.com/coreos/etcd v3.3.10+incompatible/go.mod h1:uF7uidLiAD3TWHmW31ZFd/JWoc32PjwdhPthX9715RE=
 github.com/coreos/go-etcd v2.0.0+incompatible/go.mod h1:Jez6KQU2B/sWsbdaef3ED8NzMklzPG4d5KIOhIy30Tk=
 github.com/coreos/go-iptables v0.2.0 h1:RmVRALeVCicZcF3rF05e0ooU9x9TmalN0HcT4hkhG5s=
@@ -77,6 +75,8 @@ github.com/cyphar/filepath-securejoin v0.2.4 h1:Ugdm7cg7i6ZK6x3xDF1oEu1nfkyfH53E
 github.com/cyphar/filepath-securejoin v0.2.4/go.mod h1:aPGpWjXOXUn2NCNjFvBE6aRxGGx79pTxQpKOJNYHHl4=
 github.com/danwinship/knftables v0.0.13 h1:89Ieiia6MMfXWQF9dyaou1CwBU8h8sHa2Zo3OlY2o04=
 github.com/danwinship/knftables v0.0.13/go.mod h1:OzipaBQqkQAIbVnafTGyHgfFbjWTJecrA7/XNLNMO5E=
+github.com/danwinship/plugins v0.6.1-0.20241104134446-9aff0a799eda h1:HFqU7hwRDVhnP+qc9kqSmj+L7JyamTz7colwElkOkO8=
+github.com/danwinship/plugins v0.6.1-0.20241104134446-9aff0a799eda/go.mod h1:DmNTeZCoIcr5wVw/utJO0GO9ZLjl4fcl08lzJvZNNA8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
