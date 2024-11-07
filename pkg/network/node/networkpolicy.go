@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"math"
+	"net"
 	"os"
 	"reflect"
 	"sort"
@@ -822,7 +823,8 @@ func (np *networkPolicyPlugin) parsePeerFlows(npns *npNamespace, npp *npPolicy, 
 					sel, _ := metav1.LabelSelectorAsSelector(peer.NamespaceSelector)
 					if _, ok := np.nsMatchCache[sel.String()].matches[HostNetworkNamespace]; ok {
 						for _, network := range np.node.networkInfo.ClusterNetworks {
-							cidrIP := network.ClusterCIDR.IP
+							cidrIP := make(net.IP, len(network.ClusterCIDR.IP))
+							copy(cidrIP, network.ClusterCIDR.IP)
 							cidrIP[3] = cidrIP[3] | 0x2
 							maskLen, _ := network.ClusterCIDR.Mask.Size()
 							// use a mask to match the OVN mp0 IP which is the second IP of each host subnet.
