@@ -761,17 +761,22 @@ func TestAlreadySetUp(t *testing.T) {
 	}{
 		{
 			// Good note
-			flow:    fmt.Sprintf("cookie=0x0, duration=4.796s, table=253, n_packets=0, n_bytes=0, actions=note:00.%02x.00.00.00.00", ruleVersion),
+			flow:    "cookie=0x0, duration=4.796s, table=253, n_packets=0, n_bytes=0, actions=note:00.00.00.00.00.00",
 			success: true,
 		},
 		{
-			// Wrong version
-			flow:    fmt.Sprintf("cookie=0x0, duration=4.796s, table=253, n_packets=0, n_bytes=0, actions=note:00.%02x.00.00.00.00", ruleVersion-1),
+			// Wrong version; doesn't matter
+			flow:    "cookie=0x0, duration=4.796s, table=253, n_packets=0, n_bytes=0, actions=note:00.0F.00.00.00.00",
+			success: true,
+		},
+		{
+			// Wrong plugin
+			flow:    "cookie=0x0, duration=4.796s, table=253, n_packets=0, n_bytes=0, actions=note:01.00.00.00.00.00",
 			success: false,
 		},
 		{
 			// Wrong table
-			flow:    fmt.Sprintf("cookie=0x0, duration=4.796s, table=10, n_packets=0, n_bytes=0, actions=note:00.%02x.00.00.00.00", ruleVersion),
+			flow:    "cookie=0x0, duration=4.796s, table=10, n_packets=0, n_bytes=0, actions=note:00.00.00.00.00.00",
 			success: false,
 		},
 		{
@@ -994,7 +999,7 @@ func TestSetHWAddrByIP(t *testing.T) {
 	}
 }
 
-// *** IF YOU UPDATE THIS ARRAY YOU *MUST* CHANGE ruleVersion IN ovscontroller.go ***
+// *** DO NOT UPDATE THIS ARRAY UNLESS YOU KNOW WHY THIS WARNING IS HERE. ***
 var expectedFlows = []string{
 	" cookie=0, table=0, priority=1000, ip, ct_state=-trk, actions=ct(table=0)",
 	" cookie=0, table=0, priority=400, in_port=2, ip, nw_src=10.128.0.1, actions=goto_table:30",
@@ -1060,11 +1065,11 @@ var expectedFlows = []string{
 	" cookie=0, table=111, priority=100, actions=move:NXM_NX_REG0[]->NXM_NX_TUN_ID[0..31],set_field:10.0.123.45->tun_dst,output:1,set_field:10.0.45.123->tun_dst,output:1,goto_table:120",
 	" cookie=0, table=120, priority=100, reg0=99, actions=output:4,output:5,output:6",
 	" cookie=0, table=120, priority=0, actions=drop",
-	" cookie=0, table=253, actions=note:00.0E",
+	" cookie=0, table=253, actions=note:00",
 }
 
-// Ensure that we do not change the OVS flows without bumping ruleVersion
-func TestRuleVersion(t *testing.T) {
+// Ensure that we do not change the OVS flows
+func TestFlowsUnchanged(t *testing.T) {
 	ovsif, oc, _ := setupOVSController(t)
 
 	// Now call each oc method that adds flows
@@ -1126,7 +1131,7 @@ func TestRuleVersion(t *testing.T) {
 		return
 	}
 
-	t.Logf("*** FLOWS HAVE CHANGED FROM PREVIOUS COMMIT ***\n%s\nIf this change is expected then make sure you have bumped ruleVersion in pkg/network/node/ovscontroller.go, and then update expectedFlows in pkg/network/node/ovscontroller_test.go", diffFlows(expectedFlows, flows))
+	t.Logf("*** FLOWS HAVE CHANGED FROM PREVIOUS COMMIT ***\nIf this is not a mistake, you need to add code to fix existing nodes when they update to this version, and add a new unit test to make sure that the new code works.")
 
 	t.Fatalf("flows changed")
 }
