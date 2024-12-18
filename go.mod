@@ -149,7 +149,7 @@ require (
 
 replace (
 	github.com/containernetworking/cni => github.com/containernetworking/cni v0.6.0-rc1
-	github.com/containernetworking/plugins => github.com/containernetworking/plugins v0.6.0
+	github.com/containernetworking/plugins => github.com/danwinship/plugins v0.6.1-0.20241104134446-9aff0a799eda
 	github.com/coreos/go-iptables => github.com/coreos/go-iptables v0.2.0
 	github.com/coreos/go-systemd => github.com/coreos/go-systemd v0.0.0-20190620071333-e64a0ec8b42a
 	github.com/gogo/protobuf => github.com/gogo/protobuf v1.3.2
