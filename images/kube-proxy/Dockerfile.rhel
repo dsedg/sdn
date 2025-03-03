@@ -1,4 +1,4 @@
-FROM registry.ci.openshift.org/ocp/builder:rhel-9-golang-1.22-openshift-4.17 AS builder
+FROM  registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.22-openshift-4.17 AS builder
 WORKDIR /go/src/github.com/openshift/sdn
 COPY . .
 RUN make build GO_BUILD_PACKAGES=./vendor/k8s.io/kubernetes/cmd/kube-proxy --warn-undefined-variables
@@ -12,4 +12,4 @@ COPY --from=builder /go/src/github.com/openshift/sdn/kube-proxy /usr/bin/
 
 LABEL io.k8s.display-name="Kubernetes kube-proxy" \
       io.k8s.description="Provides kube-proxy for external CNI plugins" \
-      io.openshift.tags="openshift,kube-proxy"
+      io.openshift.tags="DDK,openshift,kube-proxy"
